@@ -1,23 +1,31 @@
-import logo from './logo.svg';
-import './App.css';
+import {Routes, Route} from 'react-router-dom';
+
+import Login from './Login';
+import ProtextA from './ProtextA';
+import ProtextB from './ProtextB'
+import A from './A'
+import AB from './AB'
+import B from './B'
 
 function App() {
+  const users = [
+    {id:1,type:'a'},
+    {id:2,type:'b'},
+  ]
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Routes>
+      <Route element={<ProtextA />}>
+          <Route element={<A />} path='/A' exact />
+          <Route element={<AB />} path='/AB'/>
+        </Route>
+        <Route element={<ProtextB />}>
+          <Route element={<B />} path='/B' exact />
+          <Route element={<AB />} path='/AB'/>
+        </Route>
+             <Route path='/login' element={<Login />} />
+      </Routes>
     </div>
   );
 }
